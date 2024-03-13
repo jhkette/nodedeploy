@@ -23,7 +23,7 @@ app.use(
   cors({
     credentials: true,
       // credentials: true, // allows cookies to be sent to client
-      origin: process.env.ORIGIN, // from this url (ie the client)- saved in the dotenv file
+      // origin: process.env.ORIGIN, // from this url (ie the client)- saved in the dotenv file
       // optionsSuccessStatus: 200, // 
   })
 );
