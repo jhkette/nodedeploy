@@ -12,8 +12,10 @@ function checkPbs(dataSet, cyclingAllTime, runAllTime) {
   let updateFlagCycling = false;
   let updateFlagRunning = false;
   let ftpChange = false;
+  let criticalChange = false;
 
   for (activity of dataSet) {
+    console.log(activity["type"])
     if (
       (activity["type"] == "Ride" || activity["type"] == "VirtualRide") &&
       activity["pbs"]
@@ -28,14 +30,21 @@ function checkPbs(dataSet, cyclingAllTime, runAllTime) {
         }
       }
     }
-    if (activity["type"] == "Run" && activity["runningpbs"]) {
+    if (activity["type"] == "Run" && activity["runpbs"]) {
       for (distance of distances) {
-        if (activity["runningpbs"][distance] < runAllTime[distance]) {
-          if (distance === "10000") {
-            criticalChange = true;
-          }
+        if (activity["runpbs"][distance] < runAllTime[distance]) {
+          console.log(runAllTime[distance], updateFlagRunning, "THIS IS PBS" )
+         
           updateFlagRunning = true;
-          runAllTime[duration] = activity["runningpbs"][distance];
+          runAllTime[distance] = activity["runpbs"][distance];
+
+          console.log(runAllTime[distance], updateFlagRunning, "THIS IS PBS" )
+        }
+        if ((activity["runpbs"][distance] != false) && (runAllTime[distance] == false)) {
+          updateFlagRunning = true;
+          runAllTime[duration] = activity["runpbs"][distance];
+         
+          console.log(runAllTime[duration], updateFlagRunning, "THIS IS PBS" )
         }
       }
     }

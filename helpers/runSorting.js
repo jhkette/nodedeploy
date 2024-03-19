@@ -50,7 +50,9 @@ function runDistance(numbers){
     // map returns a new value for each of those, and the value 
     //returned is the difference between the element and the corresponding 
     // element in A
+
     const distances = numbers.slice(1).map((v, i) => (v - numbers[i]).toFixed(1)).map(Number);
+    console.log(distances)
     return distances
   }
 

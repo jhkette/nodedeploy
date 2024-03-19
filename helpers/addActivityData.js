@@ -51,11 +51,18 @@ async function activityLoop(data_set, token) {
       element["run_stream"] = run.data;
       const runpbs = {};
       const runInMetres = runDistance(
+       
         element["run_stream"]["distance"]["data"]
       );
 
+      console.log(element["run_stream"], "this is run stream")
+
+      console.log(runInMetres)
+
       for (distance of distances) {
+       
         const quickest = getShortestSubarray(runInMetres, distance);
+        // console.log(quickest)
         runpbs[distance] = quickest;
       }
 
